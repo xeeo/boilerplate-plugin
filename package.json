@@ -1,0 +1,36 @@
+{
+  "name": "boilerplate-plugin",
+  "version": "0.0.1",
+  "private": false,
+  "description": "Plugin",
+  "homepage": "https://github.com/xeeo/boilerplate-plugin#readme",
+  "main": "src/plugin.js",
+  "scripts": {
+    "test": "mocha -w --debug test/**/*.mocha.js"
+  },
+  "bugs": {
+    "url": "https://github.com/xeeo/boilerplate-plugin/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xeeo/boilerplate-plugin.git"
+  },
+  "keywords": [
+    "plugin",
+    "boilerplate"
+  ],
+  "author": "Raul Geana",
+  "license": "MIT",
+  "devDependencies": {
+    "hapi": "^8.8.1",
+    "joi": "^6.6.1",
+    "q": "^1.4.1",
+    "chai": "^3.2.0",
+    "chai-as-promised": "^5.1.0",
+    "jasmine-core": "^2.3.4",
+    "mocha": "^2.2.5",
+    "mocha-junit-reporter": "^1.6.1",
+    "requirejs": "^2.1.20",
+    "sinon": "^1.15.4"
+  }
+}
