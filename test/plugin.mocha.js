@@ -24,7 +24,7 @@ function inject(options) {
     return defer.promise;
 };
 
-describe('plugin -', function () {
+describe('PLUGIN ', function () {
 
     before(function (done) {
         server.connection({
@@ -50,18 +50,14 @@ describe('plugin -', function () {
         done();
     });
 
-    describe('on route /plugin/say-hey -', function () {
-
-        it('GET should respond with a text "hey"', function () {
-            return inject({
-                method: "GET",
-                url   : "/plugin/say-hey"
-            }).then(function (response) {
-                (response.statusCode).should.equal(200);
-                (response.result).should.eql({text: 'hey'});
-            });
+    it('should respond with a text "hey" on route /plugin/say-hey', function () {
+        return inject({
+            method: "GET",
+            url   : "/plugin/say-hey"
+        }).then(function (response) {
+            (response.statusCode).should.equal(200);
+            (response.result).should.eql({text: 'hey'});
         });
-
     });
 
 });

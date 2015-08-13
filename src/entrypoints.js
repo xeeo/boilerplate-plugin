@@ -4,7 +4,7 @@ module.exports = function (server, plugin) {
 
     server.route({
         method: 'GET',
-        path: '/task/say-hey',
+        path: '/plugin/say-hey',
         handler : plugin.sayHey,
         config : {}
     });
