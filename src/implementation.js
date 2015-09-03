@@ -12,7 +12,7 @@ var instance = {};
  *
  * @param {Object} options - Options for overwriting configuration
  *
- * @returns {{}}
+ * @returns {Object}
  */
 var constructor = function constructor(options) {
     instance.options = options || {};

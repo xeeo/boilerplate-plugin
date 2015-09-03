@@ -1,13 +1,11 @@
 'use strict';
 
-var chai   = require('chai');
-var should = chai.should();
 var Hapi   = require('hapi');
 var domain = require('domain').createDomain();
 var q      = require('q');
 var server = new Hapi.Server();
 
-var inject = function inject(options) {
+var urlInject = function urlInject(options) {
     var defer = q.defer();
 
     domain.run(function runMock() {
@@ -50,7 +48,7 @@ describe('INSTANCE ', function() {
     });
 
     it('should respond with a text "hey" on route /plugin/say-hey', function() {
-        return inject({
+        return urlInject({
             method: 'GET',
             url   : '/plugin/say-hey'
         }).then(function success(response) {

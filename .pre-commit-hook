@@ -21,23 +21,28 @@ for file in ${files}; do
 
     if [ "$resultLint" == "" ]; then
        echo "JSHint Passed: ${file}"
-   else
+    else
         echo "$errorsLint"
         echo "JSHint Failed: ${file}"
-           pass=false
-   fi
+        pass=false
+    fi
 
    if [ "$resultCS" == "" ]; then
-       echo "JSCS Passed: ${file}"
+        echo "JSCS Passed: ${file}"
    else
         echo "$errorsCS"
         echo "JSCS Failed: ${file}"
-           pass=false
+        pass=false
    fi
 
    if [ "$file" == ".jscsrc" ]; then
        echo "You are not allowed to modifly .jscsrc"
        pass=false
+   fi
+
+   if [ "$file" == ".jshintrc" ]; then
+      echo "You are not allowed to modifly .jscsrc"
+      pass=false
    fi
 
 done
