@@ -14,16 +14,16 @@ echo "\nValidating JavaScript:\n----------------------"
 
 for file in ${files}; do
 
-    resultLint=$(/usr/local/bin/jslint $PWD/${file} | grep "${file} is OK")
+    resultLint=$(/usr/local/bin/jshint $PWD/${file} | grep "error")
     resultCS=$(/usr/local/bin/jscs $PWD/${file} | grep "style errors found")
-    errorsLint=$(/usr/local/bin/jslint $PWD/${file})
+    errorsLint=$(/usr/local/bin/jshint $PWD/${file})
     errorsCS=$(/usr/local/bin/jscs $PWD/${file})
 
-    if [ "$resultLint" != "" ]; then
-       echo "JSLint Passed: ${file}"
+    if [ "$resultLint" == "" ]; then
+       echo "JSHint Passed: ${file}"
    else
         echo "$errorsLint"
-        echo "JSLint Failed: ${file}"
+        echo "JSHint Failed: ${file}"
            pass=false
    fi
 
