@@ -1,14 +1,40 @@
 'use strict';
 
-var plugin = {};
+/**
+ * Current Instance
+ *
+ * @type {{}}
+ */
+var instance = {};
 
-var constructor = function (options) {
-    plugin.options = options || {};
-    return plugin;
+/**
+ * Constructor Function.
+ *
+ * @param {Object} options - Options for overwriting configuration
+ *
+ * @returns {{}}
+ */
+var constructor = function constructor(options) {
+    instance.options = options || {};
+
+    return instance;
 };
 
-plugin.sayHey = function (request, reply) {
-    reply({text: 'hey'});
+/**
+ * SayHello Hapi Handler.
+ *
+ * @param {Object} request - Hapi Request Options
+ * @param {Object} reply - Hapi Reply Function
+ *
+ * no @return
+ */
+instance.sayHey = function sayHey(request, reply) {
+    reply({
+        text: 'hey'
+    });
 };
 
+/**
+ * Export the Instance to the World
+ */
 module.exports = constructor;

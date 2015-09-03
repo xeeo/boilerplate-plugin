@@ -7,16 +7,15 @@ var domain = require('domain').createDomain();
 var q      = require('q');
 var server = new Hapi.Server();
 
-function inject(options) {
+var inject = function inject(options) {
     var defer = q.defer();
 
-    domain.run(function () {
-        server.inject(options, function (response) {
+    domain.run(function runMock() {
+        server.inject(options, function callback(response) {
             defer.resolve(response);
         });
-
     });
-    domain.on('error', function (err) {
+    domain.on('error', function callback(err) {
         defer.reject(err);
         console.log(err.stack);
     });
@@ -24,9 +23,8 @@ function inject(options) {
     return defer.promise;
 };
 
-describe('PLUGIN ', function () {
-
-    before(function (done) {
+describe('INSTANCE ', function() {
+    before(function(done) {
         server.connection({
             port: 5000
         });
@@ -36,28 +34,30 @@ describe('PLUGIN ', function () {
                 register: require('../'),
                 options : {}
             }
-        ], function (error) {
+        ], function callback(error) {
             if (error) {
                 console.error(error);
+
                 return;
             }
             server.start(done);
         });
     });
 
-    after(function (done) {
+    after(function(done) {
         server.stop();
         done();
     });
 
-    it('should respond with a text "hey" on route /plugin/say-hey', function () {
+    it('should respond with a text "hey" on route /plugin/say-hey', function() {
         return inject({
-            method: "GET",
-            url   : "/plugin/say-hey"
-        }).then(function (response) {
+            method: 'GET',
+            url   : '/plugin/say-hey'
+        }).then(function success(response) {
             (response.statusCode).should.equal(200);
-            (response.result).should.eql({text: 'hey'});
+            (response.result).should.eql({
+                text: 'hey'
+            });
         });
     });
-
 });
