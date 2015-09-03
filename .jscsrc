@@ -10,33 +10,19 @@
     "disallowMultipleLineBreaks": true,
     "disallowMultipleLineStrings": true,
     "disallowNewlineBeforeBlockStatements": true,
-    "disallowNotOperatorsInConditionals": false,
-    "disallowObjectKeysOnNewLine": false,
     "disallowOperatorBeforeLineBreak": ["-", "+", "."],
-    "disallowPaddingNewLinesAfterBlocks": false,
-    "disallowPaddingNewLinesAfterUseStrict": false,
-    "disallowPaddingNewLinesBeforeExport": false,
     "disallowPaddingNewlinesBeforeKeywords": [],
-    "disallowPaddingNewLinesBeforeLineComments": false,
     "disallowPaddingNewlinesInBlocks": true,
-    "disallowPaddingNewLinesInObjects": false,
     "disallowQuotedKeysInObjects": {
         "allExcept": ["reserved"]
     },
-    "disallowSemicolons": false,
-    "disallowSpaceAfterLineComment": false,
     "disallowSpaceAfterObjectKeys": {
-        "allExcept": ["aligned"]
+        "allExcept": ["multiline"]
     },
     "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~", "!"],
-    "disallowSpaceBeforeBinaryOperators": false,
-    "disallowSpaceBeforeBlockStatements": false,
     "disallowSpaceBeforeComma": true,
-    "disallowSpaceBeforeKeywords": false,
-    "disallowSpaceBeforeObjectValues": false,
     "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
     "disallowSpaceBeforeSemicolon": true,
-    "disallowSpaceBetweenArguments": false,
     "disallowSpacesInCallExpression": true,
     "disallowSpacesInFunction": {
         "beforeOpeningRoundBrace": true
@@ -62,7 +48,7 @@
         "requireDescriptionCompleteSentence": true,
         "requireParamDescription": true
     },
-    "requireAlignedObjectValues": "all",
+    "requireAlignedObjectValues": "ignoreFunction",
     "requireBlocksOnNewline": true,
     "requireCamelCaseOrUpperCaseIdentifiers": true,
     "requireCapitalizedComments": true,

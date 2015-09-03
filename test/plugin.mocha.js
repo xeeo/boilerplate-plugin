@@ -1,25 +1,26 @@
 'use strict';
 
-var Hapi   = require('hapi');
-var domain = require('domain').createDomain();
-var q      = require('q');
-var server = new Hapi.Server();
+var Hapi    = require('hapi');
+var domain  = require('domain').createDomain();
+var Promise = require('bluebird');
+var chai    = require('chai');
+var server  = new Hapi.Server();
 
-var urlInject = function urlInject(options) {
-    var defer = q.defer();
-
-    domain.run(function runMock() {
-        server.inject(options, function callback(response) {
-            defer.resolve(response);
+var httpInject = function httpInject(options) {
+    return new Promise(function promise(resolve, reject) {
+        domain.run(function runMock() {
+            server.inject(options, function callback(response) {
+                resolve(response);
+            });
+        });
+        domain.on('error', function callback(err) {
+            reject(err);
+            console.log(err.stack);
         });
     });
-    domain.on('error', function callback(err) {
-        defer.reject(err);
-        console.log(err.stack);
-    });
-
-    return defer.promise;
 };
+
+chai.should();
 
 describe('INSTANCE ', function() {
     before(function(done) {
@@ -48,7 +49,7 @@ describe('INSTANCE ', function() {
     });
 
     it('should respond with a text "hey" on route /plugin/say-hey', function() {
-        return urlInject({
+        return httpInject({
             method: 'GET',
             url   : '/plugin/say-hey'
         }).then(function success(response) {

@@ -29,7 +29,9 @@ var constructor = function constructor(options) {
  * no @return
  */
 instance.sayHey = function sayHey(request, reply) {
-    reply({text: 'hey'});
+    reply({
+        text: 'hey'
+    });
 };
 
 /**
