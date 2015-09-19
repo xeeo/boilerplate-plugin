@@ -1,40 +1,24 @@
 'use strict';
 
-/**
- * Current Instance
- *
- * @type {{}}
- */
-var instance = {};
+var singleton = require('nc-singleton');
+var Hoek      = require('hoek');
 
-/**
- * Constructor Function.
- *
- * @param {Object} options - Options for overwriting configuration
- *
- * @returns {Object}
- */
-var constructor = function constructor(options) {
-    instance.options = options || {};
-
-    return instance;
+var defaultOptions = {
+    msg: 'hey'
 };
 
-/**
- * SayHello Hapi Handler.
- *
- * @param {Object} request - Hapi Request Options
- * @param {Object} reply - Hapi Reply Function
- *
- * no @return
- */
-instance.sayHey = function sayHey(request, reply) {
-    reply({
-        text: 'hey'
-    });
+var Plugin = function Plugin() {
+    this.options = defaultOptions;
+
+    return singleton.call(this, Plugin);
 };
+
+Hoek.merge(Plugin.prototype, {
+    config: require('./methods/config'),
+    sayHey: require('./methods/say-hey')
+});
 
 /**
  * Export the Instance to the World
  */
-module.exports = constructor;
+module.exports = Plugin.bind({});

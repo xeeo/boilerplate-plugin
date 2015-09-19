@@ -62,7 +62,6 @@
         "do",
         "try",
         "catch",
-        "case",
         "default"
     ],
     "requireDollarBeforejQueryAssignment": true,

@@ -1,7 +1,7 @@
 'use strict';
 
-var implementation = require('./implementation');
-var entryPoints    = require('./entrypoints');
+var plugin      = require('./implementation');
+var entryPoints = require('./entrypoints');
 
 /**
  * Register the Implementation to act like a Hapi Plugin.
@@ -11,7 +11,7 @@ var entryPoints    = require('./entrypoints');
  * @param {Function} next  - Hapi next function
  */
 exports.register = function register(server, options, next) {
-    var instance = implementation(options);
+    var instance = plugin();
 
     entryPoints(server, instance);
     next();

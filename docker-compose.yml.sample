@@ -1,7 +1,7 @@
 plugin:
  build: .
  volumes:
-  - .:/home/plugin
+  - ../:/home/plugin
  command: npm test
  ports:
   - "3000:3000"
