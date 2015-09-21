@@ -7,6 +7,5 @@ module.exports = {
         return new Promise(function callback(resolve) {
             resolve('somebody called me to say hey');
         });
-    },
-    '@global' : true
+    }
 };
