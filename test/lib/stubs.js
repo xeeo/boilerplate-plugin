@@ -23,9 +23,11 @@ Stubs.prototype.getStubs = function(path) {
     stubFiles = fs.readdirSync(this.subsPath);
 
     stubFiles.forEach(function callback(fileName) {
-        var stub = fileName.replace(/\.[^\.]+$/, '');
+        var stubName = fileName.replace(/\.[^\.]+$/, '');
+        var stub     = require(self.subsPath + '/' + stubName);
+        stub['@global'] = true;
 
-        stubs[stub] = require(self.subsPath + '/' + stub);
+        stubs[stubName] = stub;
     });
 
     return stubs;
