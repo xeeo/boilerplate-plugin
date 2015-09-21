@@ -11,6 +11,7 @@
   "noarg": true,
   "undef": true,
   "unused": true,
+  "newcap": false,
   "strict": true,
   "globals": {
     "angular": true,
