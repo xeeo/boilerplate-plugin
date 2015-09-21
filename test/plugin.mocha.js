@@ -1,3 +1,4 @@
+/*jshint -W030 */
 'use strict';
 
 var chai       = require('chai');
