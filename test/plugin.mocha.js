@@ -4,6 +4,7 @@
 var chai       = require('chai');
 var server     = require('./lib/server')();
 
+chai.use(require('chai-things'));
 chai.use(require('chai-as-promised'));
 chai.should();
 
