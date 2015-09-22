@@ -1,12 +1,8 @@
 /*jshint -W030 */
 'use strict';
 
-var chai       = require('chai');
-var server     = require('./lib/server')();
-
-chai.use(require('chai-things'));
-chai.use(require('chai-as-promised'));
-chai.should();
+require('./lib/chai');
+var server = require('./lib/server')();
 
 describe('INSTANCE ', function() {
     before(function(done) {
