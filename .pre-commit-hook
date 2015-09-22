@@ -3,26 +3,25 @@ export PATH=/usr/local/bin:$PATH
 
 files=$(git diff --cached --name-only --diff-filter=ACM | grep ".js$")
 pass=true
+passTest=true
 
 if [ "$files" = "" ]; then
-   exit 0
+    exit 0
 fi
-
-pass=true
 
 echo "\nValidating JavaScript:\n----------------------"
 
 for file in ${files}; do
 
-    resultLint=$(/usr/local/bin/jshint $PWD/${file} | grep "error")
+    resultHint=$(/usr/local/bin/jshint $PWD/${file} | grep "error")
     resultCS=$(/usr/local/bin/jscs $PWD/${file} | grep "style errors found")
-    errorsLint=$(/usr/local/bin/jshint $PWD/${file})
+    errorsHint=$(/usr/local/bin/jshint $PWD/${file})
     errorsCS=$(/usr/local/bin/jscs $PWD/${file})
 
-    if [ "$resultLint" == "" ]; then
-       echo "JSHint Passed: ${file}"
+    if [ "$resultHint" == "" ]; then
+        echo "JSHint Passed: ${file}"
     else
-        echo "$errorsLint"
+        echo "$errorsHint"
         echo "JSHint Failed: ${file}"
         pass=false
     fi
@@ -40,18 +39,31 @@ for file in ${files}; do
         pass=false
     fi
 
-    if [ "$file" == ".jshintrc" ]; then
-        echo "You are not allowed to modifly .jscsrc"
-        pass=false
-    fi
-
 done
 
 echo "\nJavaScript validation complete\n"
 
 if ! $pass; then
-   echo "COMMIT FAILED: Your commit contains files that should pass JSLint but do not. Please fix the JSLint errors and try again.\n"
-   exit 1
+    echo "COMMIT FAILED: Your commit contains files that should pass JSHint, but do not. Please fix the JSHint errors and try again.\n"
+    exit 1
 else
-   echo "COMMIT SUCCEEDED"
+    echo "JAVASCRIPT VALIDATION SUCCEEDED.\n\nProceeding to tests validation ...\n"
+fi
+
+echo "\nValidating tests:\n----------------------"
+
+resultTests=$(/usr/local/bin/mocha $PWD/test)
+errorsTests=$(/usr/local/bin/mocha $PWD/test | grep "failing")
+
+echo "$resultTests"
+
+if [ "$errorsTests" != "" ]; then
+    passTest=false
+fi
+
+if ! $passTest; then
+    echo "\nCOMMIT FAILED: Your tests have failed. Please make sure every test passes and try again.\n"
+    exit 1
+else
+    echo "\nTESTS VALIDATION SUCCEEDED.\n\nProceeding to Jira validation ...\n"
 fi
