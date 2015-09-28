@@ -30,8 +30,7 @@ Server.prototype.start = function(done) {
 };
 
 Server.prototype.stop = function(done) {
-    server.stop();
-    done();
+    server.stop(done);
 };
 
 Server.prototype.inject = function(options, callback) {
