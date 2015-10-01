@@ -50,7 +50,7 @@
     },
     "requireAlignedObjectValues": "ignoreFunction",
     "requireBlocksOnNewline": true,
-    "requireCamelCaseOrUpperCaseIdentifiers": true,
+    "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
     "requireCapitalizedComments": true,
     "requireCapitalizedConstructors": true,
     "requireCommaBeforeLineBreak": true,
