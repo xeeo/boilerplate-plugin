@@ -25,8 +25,8 @@ Stubs.prototype.getStubs = function(path) {
     stubFiles.forEach(function callback(fileName) {
         var stubName = fileName.replace(/\.[^\.]+$/, '');
         var stub     = require(self.subsPath + '/' + stubName);
+        
         stub['@global'] = true;
-
         stubs[stubName] = stub;
     });
 
