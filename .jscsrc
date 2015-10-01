@@ -51,7 +51,7 @@
     "requireAlignedObjectValues": "ignoreFunction",
     "requireBlocksOnNewline": true,
     "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
-    "requireCapitalizedComments": true,
+    "requireCapitalizedComments": false,
     "requireCapitalizedConstructors": true,
     "requireCommaBeforeLineBreak": true,
     "requireCurlyBraces": [
