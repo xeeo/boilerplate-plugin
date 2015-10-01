@@ -9,5 +9,12 @@ fi
 # If commit message doesn't contain LSP or TKP Jira ticket tag and number, commit must fail
 if ! [[ -n "$(cat $1 | egrep "((LSP|TKP)\-\d{2,4}($|\s|\n))")" ]]; then
     echo "Insert Jira ticket tag and number in commit message"
+    echo "\n"
+    echo "COMMIT FAILED"
+    echo "\n"
     exit 1
+else    
+    echo "\n"
+    echo "COMMIT SUCCEEDED"
+    echo "\n"
 fi
