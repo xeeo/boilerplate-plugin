@@ -29,6 +29,7 @@
     "hapi": "10.x",
     "mocha": "^2.2.5",
     "mocha-junit-reporter": "^1.6.1",
+    "istanbul": "^0.3.21",
     "proxyquire": "^1.7.2",
     "sinon": "^1.15.4",
     "sinon-chai": "^2.8.0"
