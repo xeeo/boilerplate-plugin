@@ -1,19 +1,12 @@
 #!/bin/sh
-# If commit message is a fixup message, ignore it
-[[ -n "$(cat $1 | egrep "^(((LTKP|LSP|TKP)\-\d{2,4}($|\s|\n))|(Merge branch)|(\d+\.\d+\.\d+))")" ]] && FIXUP="YES"
-TICKET=$(git symbolic-ref HEAD | rev | cut -d/ -f1 | rev | grep -o -E "[A-Z]+-[0-9]+")
-if [[ -n "${TICKET}" && -z "${FIXUP}" ]]; then
-    sed -i.bak -e "1s/^/[${TICKET}] /" $1
-fi
-#!/bin/sh
 # If commit message doesn't contain LSP or TKP Jira ticket tag and number, commit must fail
-if ! [[ -n "$(cat $1 | egrep "((LSP|TKP)\-\d{2,4}($|\s|\n))")" ]]; then
+if ! [[ -n "$(cat $1 | egrep "^(((LTKP|LSP|TKP)\-\d{2,4}($|\s|\n))|(Merge branch)|(\d+\.\d+\.\d+))")" ]]; then
     echo "Insert Jira ticket tag and number in commit message"
     echo "\n"
     echo "COMMIT FAILED"
     echo "\n"
     exit 1
-else    
+else
     echo "\n"
     echo "COMMIT SUCCEEDED"
     echo "\n"
