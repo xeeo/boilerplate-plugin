@@ -14,10 +14,10 @@ describe('INSTANCE ', function() {
     });
 
     it('should respond with a text "hey" on route /plugin/say-hey', function(done) {
-        server.inject({
+        return server.inject({
             method: 'GET',
             url   : '/plugin/say-hey'
-        }, function callback(response) {
+        }).then(function(response) {
             (response.statusCode).should.equal(200);
             (response.result).should.have.property('text').which.equals('hey');
             (response.result).should.have.property('event');
@@ -25,4 +25,5 @@ describe('INSTANCE ', function() {
             done();
         });
     });
+
 });
