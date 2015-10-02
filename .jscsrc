@@ -50,7 +50,7 @@
     },
     "requireAlignedObjectValues": "ignoreFunction",
     "requireBlocksOnNewline": true,
-    "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
+    "requireCamelCaseOrUpperCaseIdentifiers": true,
     "requireCapitalizedComments": false,
     "requireCapitalizedConstructors": true,
     "requireCommaBeforeLineBreak": true,
@@ -70,9 +70,9 @@
     },
     "requireLineBreakAfterVariableAssignment": true,
     "requireMatchingFunctionName": true,
-    "requireNamedUnassignedFunctions": {
-        "allExcept": ["describe", "it", "before", "beforeEach", "after", "afterEach"]
-    },
+//    "requireNamedUnassignedFunctions": {
+//        "allExcept": ["describe", "it", "before", "beforeEach", "after", "afterEach", "Promise"]
+//    },
     "requireObjectKeysOnNewLine": true,
     "requireOperatorBeforeLineBreak": [
         "?",
@@ -104,8 +104,7 @@
         "before",
         "beforeEach",
         "after",
-        "afterEach",
-        "function"
+        "afterEach"
     ],
     "requirePaddingNewLinesBeforeLineComments": {
         "allExcept": "firstAfterCurly"
@@ -168,7 +167,7 @@
         "lineBreakAfterOpeningBrace": true,
         "lineBreakBeforeClosingBrace": true
     },
-    "requireVarDeclFirst": true,
+//    "requireVarDeclFirst": true,
     "safeContextKeyword": ["self"],
     "validateIndentation": 4,
     "validateNewlineAfterArrayElements": 3,
